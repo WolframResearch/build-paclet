@@ -18,14 +18,15 @@ print[ "Installing dependencies..." ];
 pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/DefinitionNotebookClient.paclet" ];
 pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/PacletResource.paclet"           ];
 
-pacletInstall[ url_ ] :=
-    Module[ { zip, tmp, pacs, downloaded, installed },
+pacletInstall[ url_ ] := Enclose[
+    Module[ { zip, tmp, pacs, dir, downloaded, installed },
         print[ "Installing paclet from: ", url ];
         If[ StringEndsQ[ url, ".zip" ],
-            zip = URLDownload @ url;
-            ExtractArchive[ zip, tmp = CreateDirectory[ ] ];
+            zip = Confirm @ URLDownload @ url;
+            Confirm @ ExtractArchive[ zip, tmp = CreateDirectory[ ] ];
             pacs = FileNames[ "PacletInfo." ~~ ("m" | "wl"), tmp, Infinity ];
-            downloaded = CreatePacletArchive @ First[ pacs, $Failed ],
+            dir = DirectoryName @ Confirm @ First[ pacs, $Failed ];
+            downloaded = CreatePacletArchive @ dir,
             downloaded = url
         ];
         installed = PacletInstall[ downloaded, ForceVersionInstall -> True ];
@@ -34,7 +35,12 @@ pacletInstall[ url_ ] :=
             print[ "::error:: Paclet installation failed: ", installed ];
             Exit[ 1 ]
         ]
-    ];
+    ],
+    Function[
+        print[ "::error:: Paclet installation failed: ", url ];
+        Exit[ 1 ]
+    ]
+];
 
 
 toPacletCICDURL[ "latest" ] :=
