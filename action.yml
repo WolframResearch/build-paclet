@@ -1,0 +1,21 @@
+name: 'Build Paclet'
+description: 'Build a paclet using its definition notebook file'
+branding:
+  icon: 'package'  
+  color: 'orange'
+inputs:
+  target:
+    description: 'The target'
+    required: false
+    default: 'Submit'
+  check:
+    description: 'Whether to check for errors first'
+    required: false
+    default: 'true'
+  definition_notebook:
+    description: 'Path to the definition notebook'
+    required: false
+    default: './DefinitionNotebook.nb'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
