@@ -46,9 +46,10 @@ If[ ! FileExistsQ @ ExpandFileName @ defNB,
 result = Block[ { Print = print },
     Wolfram`PacletCICD`BuildPaclet[
         File @ defNB,
-        "Preflight" -> check,
-        "Target"    -> target,
-        "Debug"     -> debug
+        "Preflight"   -> check,
+        "Target"      -> target,
+        "Debug"       -> debug,
+        "ConsoleType" -> "GitHub"
     ]
 ]
 
