@@ -29,6 +29,14 @@ If[ ! BooleanQ @ check,
     Exit[ 1 ]
 ];
 
+debug = Interpreter[ "Boolean" ][ getInput[ "DEBUG" ] ];
+If[ ! BooleanQ @ debug,
+    print[ "::error::Expected a boolean value for input 'debug' instead of ",
+           getInput[ "DEBUG" ]
+    ];
+    Exit[ 1 ]
+];
+
 defNB = getInput[ "DEFINITION_NOTEBOOK" ];
 If[ ! FileExistsQ @ ExpandFileName @ defNB,
     print[ "::error::Definition notebook not found: ", defNB ];
@@ -39,7 +47,8 @@ result = Block[ { Print = print },
     Wolfram`PacletCICD`BuildPaclet[
         File @ defNB,
         "Preflight" -> check,
-        "Target"    -> target
+        "Target"    -> target,
+        "Debug"     -> debug
     ]
 ]
 

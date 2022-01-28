@@ -12,6 +12,10 @@ inputs:
     description: 'Whether to check for errors first'
     required: false
     default: 'true'
+  debug:
+    description: 'Whether to enable additional debug output'
+    required: false
+    default: 'false'
   definition_notebook:
     description: 'Path to the definition notebook'
     required: false
