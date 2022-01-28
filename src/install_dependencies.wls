@@ -15,9 +15,6 @@ getInput[ name_String ] :=
 
 print[ "Installing dependencies..." ];
 
-pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/DefinitionNotebookClient.paclet" ];
-pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/PacletResource.paclet"           ];
-
 pacletInstall[ url_ ] := Enclose[
     Module[ { zip, tmp, pacs, dir, downloaded, installed },
         print[ "Installing paclet from: ", url ];
@@ -65,6 +62,9 @@ toPacletCICDURL[ vers_String ] :=
             vers
         ]
     ];
+
+pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/DefinitionNotebookClient.paclet" ];
+pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/PacletResource.paclet"           ];
 
 pacVer = getInput[ "PACLET_CICD_VERSION" ];
 pacURL = toPacletCICDURL @ pacVer;
