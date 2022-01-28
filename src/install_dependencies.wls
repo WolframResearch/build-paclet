@@ -19,9 +19,16 @@ pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/DefinitionNot
 pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/PacletResource.paclet"           ];
 
 pacletInstall[ url_ ] :=
-    Module[ { installed },
+    Module[ { zip, tmp, pacs, downloaded, installed },
         print[ "Installing paclet from: ", url ];
-        installed = PacletInstall[ url, ForceVersionInstall -> True ];
+        If[ StringEndsQ[ url, ".zip" ],
+            zip = URLDownload @ url;
+            ExtractArchive[ zip, tmp = CreateDirectory[ ] ];
+            pacs = FileNames[ "PacletInfo." ~~ ("m" | "wl"), tmp, Infinity ];
+            downloaded = CreatePacletArchive @ First[ pacs, $Failed ],
+            downloaded = url
+        ];
+        installed = PacletInstall[ downloaded, ForceVersionInstall -> True ];
         If[ PacletObjectQ @ installed,
             print[ "Paclet installed to: ", installed[ "Location" ] ],
             print[ "::error:: Paclet installation failed: ", installed ];
