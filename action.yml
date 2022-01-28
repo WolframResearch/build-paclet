@@ -16,6 +16,10 @@ inputs:
     description: 'Path to the definition notebook'
     required: false
     default: './DefinitionNotebook.nb'
+  paclet_cicd_version:
+    description: 'Version of PacletCICD to use'
+    required: false
+    default: 'latest'
 runs:
   using: 'docker'
   image: 'Dockerfile'
