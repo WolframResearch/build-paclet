@@ -35,12 +35,19 @@ If[ ! FileExistsQ @ ExpandFileName @ defNB,
     Exit[ 1 ]
 ];
 
-Block[ { Print = print },
+result = Block[ { Print = print },
     Wolfram`PacletCICD`BuildPaclet[
         File @ defNB,
         "Preflight" -> check,
         "Target"    -> target
     ]
 ]
+
+print @ result;
+
+If[ MatchQ[ result, _Wolfram`PacletCICD`BuildPaclet ],
+    print[ "::error::Wolfram`PacletCICD`BuildPaclet not defined" ];
+    Exit[ 1 ]
+];
 
 (* :!CodeAnalysis::EndBlock:: *)
