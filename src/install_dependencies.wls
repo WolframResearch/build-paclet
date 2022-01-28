@@ -21,6 +21,6 @@ print[ "Installing dependencies..." ];
 
 pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/DefinitionNotebookClient.paclet"                ];
 pacletInstall[ "https://www.wolframcloud.com/obj/rhennigan/Paclets/PacletResource.paclet"                          ];
-pacletInstall[ "https://github.com/rhennigan/PacletCICD/releases/download/v0.1.1/Wolfram__PacletCICD-0.1.1.paclet" ];
+pacletInstall[ "https://github.com/rhennigan/PacletCICD/releases/download/v0.1.2/Wolfram__PacletCICD-0.1.2.paclet" ];
 
 (* :!CodeAnalysis::EndBlock:: *)
