@@ -2,14 +2,12 @@
 
 set -e
 
-echo "GITHUB_ENV="$GITHUB_ENV
-
 export SCRIPT_DIR=$(dirname ${0})
 
+echo "::group::Installing dependencies..."
 wolframscript ${SCRIPT_DIR}/install_dependencies.wls
+echo "::endgroup::"
 
+echo "::group::Building Paclet..."
 wolframscript ${SCRIPT_DIR}/build_paclet.wls
-
-echo $(cat $GITHUB_ENV)
-chmod -R a+r ./build
-echo $(ls -la ./build)
+echo "::endgroup::"

@@ -13,8 +13,6 @@ getInput[ name_String ] :=
         val
     ];
 
-print[ "::group::Installing dependencies..." ];
-
 pacletInstall[ url_ ] := Enclose[
     Module[ { zip, tmp, pacs, dir, downloaded, installed },
         print[ "Installing paclet from: ", url ];
@@ -75,7 +73,5 @@ If[ ! StringQ @ pacURL,
 ];
 
 pacletInstall @ pacURL;
-
-print[ "::endgroup::" ];
 
 (* :!CodeAnalysis::EndBlock:: *)
