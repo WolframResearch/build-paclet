@@ -2,6 +2,8 @@
 
 set -e
 
+echo "GITHUB_ENV="$GITHUB_ENV
+
 export SCRIPT_DIR=$(dirname ${0})
 
 wolframscript ${SCRIPT_DIR}/install_dependencies.wls
