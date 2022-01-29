@@ -43,15 +43,21 @@ If[ ! FileExistsQ @ ExpandFileName @ defNB,
     Exit[ 1 ]
 ];
 
-result = Block[ { Print = print },
-    Wolfram`PacletCICD`BuildPaclet[
-        File @ defNB,
-        "Preflight"   -> check,
-        "Target"      -> target,
-        "Debug"       -> debug,
-        "ConsoleType" -> "GitHub"
-    ]
-];
+result =
+    Block[
+        {
+            Print = print,
+            DefinitionNotebookClient`BeginConsoleGroup,
+            DefinitionNotebookClient`EndConsoleGroup
+        },
+        Wolfram`PacletCICD`BuildPaclet[
+            File @ defNB,
+            "Preflight"   -> check,
+            "Target"      -> target,
+            "Debug"       -> debug,
+            "ConsoleType" -> "GitHub"
+        ]
+    ];
 
 print @ result;
 
