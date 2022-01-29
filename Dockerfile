@@ -5,6 +5,5 @@ COPY ["src", "/src/"]
 
 USER root
 RUN chmod +x /src/main.sh
-USER wolframengine
 
 ENTRYPOINT ["/src/main.sh"]
