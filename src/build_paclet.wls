@@ -51,7 +51,7 @@ result = Block[ { Print = print },
         "Debug"       -> debug,
         "ConsoleType" -> "GitHub"
     ]
-]
+];
 
 print @ result;
 
