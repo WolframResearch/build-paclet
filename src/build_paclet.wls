@@ -52,7 +52,7 @@ result =
         },
         Wolfram`PacletCICD`BuildPaclet[
             File @ defNB,
-            "Preflight"   -> check,
+            "Check"       -> check,
             "Target"      -> target,
             "Debug"       -> debug,
             "ConsoleType" -> "GitHub"
