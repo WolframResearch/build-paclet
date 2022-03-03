@@ -19,7 +19,7 @@ inputs:
   definition_notebook:
     description: 'Path to the definition notebook'
     required: false
-    default: './DefinitionNotebook.nb'
+    default: './ResourceDefinition.nb'
   paclet_cicd_version:
     description: 'Version of PacletCICD to use'
     required: false
