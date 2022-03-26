@@ -24,6 +24,10 @@ inputs:
     description: 'Version of PacletCICD to use'
     required: false
     default: 'latest'
+  resource_system_base:
+    description: 'Specifies the location of the resource system'
+    required: false
+    default: 'https://www.wolframcloud.com/obj/resourcesystem/api/1.0'
 runs:
   using: 'docker'
   image: 'Dockerfile'
