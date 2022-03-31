@@ -17,13 +17,25 @@ $pacletsRoot = "https://www.wolframcloud.com/obj/rhennigan/Paclets";
 
 pacletInstall[ n_String -> v_String ] := pacletInstall[ n <> "-" <> v ];
 
+pacletInstall[ url_String? urlQ ] := Enclose[
+    Module[ { installed },
+        print[ "Installing paclet from: ", url ];
+        installed = PacletInstall[ url, ForceVersionInstall -> True ];
+        If[ PacletObjectQ @ installed,
+            print[ "Paclet installed to: ", installed[ "Location" ] ],
+            print[ "::error:: Paclet installation failed: ", installed ];
+            Exit[ 1 ]
+        ]
+    ],
+    Function[
+        print[ "::error:: Paclet installation failed: ", url ];
+        Exit[ 1 ]
+    ]
+];
+
 pacletInstall[ spec_String ] := Enclose[
     Module[ { url, zip, tmp, pacs, dir, downloaded, installed },
-        url = If[ urlQ @ spec,
-                  url,
-                  URLBuild @ { $pacletsRoot, spec <> ".paclet" }
-              ];
-
+        url = URLBuild @ { $pacletsRoot, spec <> ".paclet" };
         ConfirmAssert @ StringQ @ url;
         print[ "Installing paclet from: ", url ];
         If[ StringEndsQ[ url, ".zip" ],
