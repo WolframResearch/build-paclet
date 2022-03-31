@@ -19,7 +19,11 @@ pacletInstall[ n_String -> v_String ] := pacletInstall[ n <> "-" <> v ];
 
 pacletInstall[ spec_String ] := Enclose[
     Module[ { url, zip, tmp, pacs, dir, downloaded, installed },
-        url = URLBuild @ { $pacletsRoot, spec <> ".paclet" };
+        url = If[ urlQ @ spec,
+                  url,
+                  URLBuild @ { $pacletsRoot, spec <> ".paclet" }
+              ];
+
         ConfirmAssert @ StringQ @ url;
         print[ "Installing paclet from: ", url ];
         If[ StringEndsQ[ url, ".zip" ],
@@ -42,6 +46,10 @@ pacletInstall[ spec_String ] := Enclose[
         Exit[ 1 ]
     ]
 ];
+
+
+urlQ[ url_String ] := StringQ @ URLParse[ url, "Scheme" ];
+urlQ[ ___        ] := False;
 
 
 toPacletCICDURL[ "latest" ] :=
