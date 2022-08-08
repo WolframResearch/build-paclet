@@ -67,7 +67,7 @@ urlQ[ ___        ] := False;
 toPacletCICDURL[ "latest" ] :=
     Part[
         URLExecute[
-            "https://api.github.com/repos/rhennigan/PacletCICD/releases/latest",
+            "https://api.github.com/repos/WolframResearch/PacletCICD/releases/latest",
             "RawJSON"
         ],
         "assets",
@@ -78,11 +78,11 @@ toPacletCICDURL[ "latest" ] :=
 toPacletCICDURL[ vers_String ] :=
     If[ StringMatchQ[ vers, (DigitCharacter..~~".")...~~(DigitCharacter..) ],
         TemplateApply[
-            "https://github.com/rhennigan/PacletCICD/releases/download/v`1`/Wolfram__PacletCICD-`1`.paclet",
+            "https://github.com/WolframResearch/PacletCICD/releases/download/v`1`/Wolfram__PacletCICD-`1`.paclet",
             { vers }
         ],
         TemplateApply[
-            "https://github.com/rhennigan/PacletCICD/archive/refs/heads/`1`.zip",
+            "https://github.com/WolframResearch/PacletCICD/archive/refs/heads/`1`.zip",
             vers
         ]
     ];
