@@ -1,7 +1,7 @@
 # Build Paclet for the [Wolfram Language Paclet Repository](https://resources.wolframcloud.com/PacletRepository/)
 
 The Build Paclet action is an interface to the 
-[BuildPaclet](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/ref/BuildPaclet.html) 
+[`BuildPaclet`](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/ref/BuildPaclet.html) 
 function from 
 [Wolfram/PacletCICD](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/) 
 and can be used to build your Wolfram Language paclet from source code within GitHub Actions. 
@@ -11,7 +11,7 @@ Wolfram Desktop or Mathematica.
 ## Usage
 
 A YAML file that uses this action can be automatically generated for your paclet using 
-[WorkflowExport](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/ref/WorkflowExport.html):
+[`WorkflowExport`](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/ref/WorkflowExport.html):
 
 ```Mathematica
 PacletSymbol["Wolfram/PacletCICD", "WorkflowExport"]["path/to/paclet", "Build"]
@@ -49,3 +49,14 @@ Input                     | Default                     | Description
 `target`                  | `"Submit"`                  | The named configuration to use for error checking when `check` is `true`. Some possible values are `"Build"`, `"Check"`, `"Deploy"`, and `"Submit"`.
 `definition_notebook`     | `"./ResourceDefinition.nb"` | The relative path to the paclet's resource definition notebook
 `paclet_cicd_version`     | `"latest"`                  | The version of [PacletCICD](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/) to use
+
+## Notes
+For this action to work, your repository needs to have a license entitlement ID defined as a repository secret. See [this tutorial](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/tutorial/GitHubActionsQuickStart.html) for details.
+
+
+## See Also
+
+- [Action for checking your paclet for potential issues](https://github.com/WolframResearch/check-paclet)
+- [Action for submitting your paclet to the Wolfram Language Paclet Repository](https://github.com/WolframResearch/submit-paclet)
+- [Action for running your paclet test files](https://github.com/WolframResearch/test-paclet)
+- [Continuous Integration and Deployment for Wolfram Language Paclets](https://resources.wolframcloud.com/PacletRepository/resources/Wolfram/PacletCICD/)
