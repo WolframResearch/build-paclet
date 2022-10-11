@@ -36,7 +36,7 @@ jobs:
     - name: Build paclet
       uses: WolframResearch/build-paclet@v1
     - name: UploadArtifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with: 
         path: ${{ env.PACLET_BUILD_DIR }} # set during the build-paclet step
 ```
