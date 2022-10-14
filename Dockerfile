@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM wolframresearch/wolframengine:13.0.0
+FROM wolframresearch/wolframengine:13.0.1
 
 COPY ["src", "/src/"]
 
