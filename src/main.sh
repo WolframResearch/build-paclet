@@ -3,7 +3,7 @@
 export SCRIPT_DIR=$(dirname ${0})
 
 wolfram_script () { 
-    wolframscript -script "${1}"
+    wolframscript -file "${1}"
     WS_EXIT_CODE=$(echo $?)
     case $WS_EXIT_CODE in
         0)
